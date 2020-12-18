@@ -1,0 +1,43 @@
+﻿<Window x:Class="ChatRoomProject.Contact"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ChatRoomProject"
+        mc:Ignorable="d"
+        Title="Contact" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#FFE63070" Offset="1" />
+                <GradientStop Color="#FFFE8704" Offset="0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown" Margin="10,0,-10,0">
+
+        </Border>
+
+        <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
+        <TextBox x:Name="ServerIPtextBox" Margin="66,46,575,380" Background="#FFF7EDED" BorderBrush="Black"  />
+        <TextBox x:Name="ServerPorttextBox" Margin="302,46,339,380" Background="#FFF7EDED" BorderBrush="Black"  />
+
+        <TextBox x:Name="ClientIPtextBox" Margin="66,100,575,326" Background="#FFF7EDED" BorderBrush="Black"  />
+        <TextBox x:Name="ClientPorttextBox" Margin="302,100,339,326" Background="#FFF7EDED" BorderBrush="Black"  />
+
+        <TextBox x:Name="ChatScreentextBox" Margin="102,220,215,160" Background="#FFF7EDED" BorderBrush="Black"  />
+        <TextBox x:Name="MessagetextBox" Margin="102,311,299,117" Background="#FFF7EDED" BorderBrush="Black"  />
+
+
+        <StackPanel Width="100" Margin="690,-10,10,10">
+            <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
+                 ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
+                <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
+            </Button>
+        </StackPanel>
+        <Button x:Name="Connecbutton" Content="Connect"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Margin="526,101,0,0" Height="24"/>
+        <Button x:Name="Startbutton" Content="Start"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Margin="526,46,0,0" Height="24"/>
+        <Button x:Name="Sendbutton" Content="Send"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="69" Margin="516,309,0,0" Height="24"/>
+        <Button x:Name="Actualiser" Content="Actualiser"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="69" Margin="650,233,0,0" Height="24"/>
+    </Grid>
+</Window>
