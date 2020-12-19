@@ -84,6 +84,8 @@ namespace ChatRoomProject
                     MessageBox.Show("Authentification réussi cher " + inputName, "Bienvenue", MessageBoxButton.OK, MessageBoxImage.Information);
                     (App.Current as App).Session = inputName;
                     GeneralChatPage NewWindow = new GeneralChatPage();
+                    NewWindow.Top = this.Top;
+                    NewWindow.Left = this.Left;
                     NewWindow.Show();
                     this.Close();
                     return;
@@ -97,6 +99,8 @@ namespace ChatRoomProject
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
             Inscription NewWindow = new Inscription();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
             return;

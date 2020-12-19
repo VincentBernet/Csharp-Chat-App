@@ -53,7 +53,8 @@ namespace ChatRoomProject
                 sw.WriteLine(inputName+":"+inputPassword);
                 MessageBox.Show("Votre Inscription est validé, bienvenue à vous " + inputName, "Bienvenue", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow NewWindow = new MainWindow();
-                
+                NewWindow.Top = this.Top;
+                NewWindow.Left = this.Left;
                 NewWindow.Show();
                 this.Close();
                 return;

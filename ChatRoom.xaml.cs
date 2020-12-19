@@ -36,6 +36,7 @@ namespace ChatRoomProject
         public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
+        public static Boolean Connection = false;
         public ChatRoom()
         {
             InitializeComponent();
@@ -82,6 +83,14 @@ namespace ChatRoomProject
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
                 master.Connect(ipe);
                 MessageBox.Show("Connection à la ChatRoom \"Passionné de politique\"", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                Connection = true;
+
+                Packet p = new Packet(PacketType.Chat, id);
+                string SessionName = (App.Current as App).Session;
+                p.Gdata.Add("");
+                p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue "+SessionName);
+                master.Send(p.ToBytes());//send to server
+                LastMessage = (p.Gdata[0]+ p.Gdata[1]);
             }
             catch//check si on ne peux pas se co et reboucle
             {
@@ -98,6 +107,12 @@ namespace ChatRoomProject
         private void Sendbutton_Click(object sender, RoutedEventArgs e)
         { 
             string input = MessagetextBox.Text;
+            
+            if (Connection != true)
+            {
+                MessageBox.Show("Pas de connexion détecté, veillez vous connecter à l'host d'abord !", "Impossibilité d'envoyer un message", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             Packet p = new Packet(PacketType.Chat, id);
             string SessionName = (App.Current as App).Session;
             p.Gdata.Add(SessionName);// get name

@@ -7,3 +7,4 @@ Marie.Seguin@outlook.com:Password
 Yo:yy
 NouveauCompte:mdp
 Thomas:mdp1
+Jacque:Jacque

@@ -32,6 +32,8 @@ namespace ChatRoomProject
             RoomChoice = "192.168.56.1";
             (App.Current as App).SessionChatRoom = RoomChoice;
             ChatRoom NewWindow = new ChatRoom();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }
@@ -41,6 +43,8 @@ namespace ChatRoomProject
             RoomChoice = "192.168.56.2";
             (App.Current as App).SessionChatRoom = RoomChoice;
             ChatRoom NewWindow = new ChatRoom();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }
@@ -50,6 +54,8 @@ namespace ChatRoomProject
             RoomChoice = "192.168.56.3";
             (App.Current as App).SessionChatRoom = RoomChoice;
             ChatRoom NewWindow = new ChatRoom();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }

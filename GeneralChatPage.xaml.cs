@@ -27,12 +27,16 @@ namespace ChatRoomProject
         private void btnContact_Click(object sender, RoutedEventArgs e)
         {
             Contact NewWindow = new Contact();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }
         private void btnChatRoom_Click(object sender, RoutedEventArgs e)
         {
             ChatRoomChoise NewWindow = new ChatRoomChoise();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }

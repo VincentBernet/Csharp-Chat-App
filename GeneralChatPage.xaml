@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ChatRoomProject"
         mc:Ignorable="d"
-        Title="GeneralChatPage"  Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
+        Title="GeneralChatPage"  Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
