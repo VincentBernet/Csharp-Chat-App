@@ -8,3 +8,4 @@ Yo:yy
 NouveauCompte:mdp
 Thomas:mdp1
 Jacque:Jacque
+Kaladin:mdp

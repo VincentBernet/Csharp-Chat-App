@@ -36,12 +36,13 @@ namespace ChatRoomProject
         public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
-        public static string ConditionChatRoomSpecific;
+        public static int ConditionChatRoomSpecific;
         public static Boolean Connection = false;
         public ChatRoom()
         {
             InitializeComponent();
-            IpAdresstextBox.Text = (App.Current as App).SessionChatRoom;
+
+            IpAdresstextBox.Text = Convert.ToString((App.Current as App).SessionChatRoom);
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -93,7 +94,7 @@ namespace ChatRoomProject
                 string SessionName = (App.Current as App).Session;
                 p.Gdata.Add("");
                 p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue "+SessionName);
-                p.Gdata.Add((App.Current as App).SessionChatRoom);
+                p.Gdata.Add(Convert.ToString((App.Current as App).SessionChatRoom));
                 master.Send(p.ToBytes());//send to server
                 LastMessage = (p.Gdata[0]+ p.Gdata[1]);
             }
@@ -122,7 +123,7 @@ namespace ChatRoomProject
             string SessionName = (App.Current as App).Session;
             p.Gdata.Add(SessionName);// get name
             p.Gdata.Add(input);//get input
-            p.Gdata.Add((App.Current as App).SessionChatRoom);
+            p.Gdata.Add(Convert.ToString((App.Current as App).SessionChatRoom));
             master.Send(p.ToBytes());//send to server
            
         }
@@ -161,7 +162,7 @@ namespace ChatRoomProject
                     break;
 
                 case PacketType.Chat:
-                    ConditionChatRoomSpecific = (p.Gdata[2]);
+                    ConditionChatRoomSpecific = Convert.ToInt32((p.Gdata[2]));
                     LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
                     break;
 

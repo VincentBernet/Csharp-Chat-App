@@ -14,6 +14,6 @@ namespace ChatRoomProject
     public partial class App : Application
     {
         public string Session { get; set; }
-        public string SessionChatRoom { get; set; }
+        public int SessionChatRoom { get; set; }
     }
 }
