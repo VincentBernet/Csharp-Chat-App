@@ -36,6 +36,7 @@ namespace ChatRoomProject
         public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
+        public static string ConditionChatRoomSpecific;
         public static Boolean Connection = false;
         public ChatRoom()
         {
@@ -56,10 +57,13 @@ namespace ChatRoomProject
 
         private void dispatcherTimerReloadFunction_Tick(object sender, EventArgs e)
         {
-            if (LastMessageDoNotRepeat != LastMessage)
+            if (ConditionChatRoomSpecific == (App.Current as App).SessionChatRoom)
             {
-                ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString()+ " | " + LastMessage + "\n";
-                LastMessageDoNotRepeat = LastMessage;
+                if (LastMessageDoNotRepeat != LastMessage)
+                {
+                    ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString() + " | " + LastMessage + "\n";
+                    LastMessageDoNotRepeat = LastMessage;
+                }
             }
         }
 
@@ -89,6 +93,7 @@ namespace ChatRoomProject
                 string SessionName = (App.Current as App).Session;
                 p.Gdata.Add("");
                 p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue "+SessionName);
+                p.Gdata.Add((App.Current as App).SessionChatRoom);
                 master.Send(p.ToBytes());//send to server
                 LastMessage = (p.Gdata[0]+ p.Gdata[1]);
             }
@@ -117,8 +122,9 @@ namespace ChatRoomProject
             string SessionName = (App.Current as App).Session;
             p.Gdata.Add(SessionName);// get name
             p.Gdata.Add(input);//get input
+            p.Gdata.Add((App.Current as App).SessionChatRoom);
             master.Send(p.ToBytes());//send to server
-            LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
+           
         }
 
        
@@ -155,6 +161,7 @@ namespace ChatRoomProject
                     break;
 
                 case PacketType.Chat:
+                    ConditionChatRoomSpecific = (p.Gdata[2]);
                     LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
                     break;
 

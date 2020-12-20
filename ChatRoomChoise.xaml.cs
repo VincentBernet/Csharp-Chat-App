@@ -19,40 +19,40 @@ namespace ChatRoomProject
     /// </summary>
     public partial class ChatRoomChoise : Window
     {
-        public static string RoomChoice;
+        public static string IdRoomChoice;
         public ChatRoomChoise()
         {
             InitializeComponent();
         }
         // Page de redirection vers la windows ChatRoom, ici choisir une chatRoom va changer l'adresse IP du serveur, permettant de communiquer seulement 
         //entre personne ayant sélectionner cette même chatRoom
-
-        private void btnPolitique_Click(object sender, RoutedEventArgs e)
-        {
-            RoomChoice = "192.168.56.1";
-            (App.Current as App).SessionChatRoom = RoomChoice;
-            ChatRoom NewWindow = new ChatRoom();
-            NewWindow.Top = this.Top;
-            NewWindow.Left = this.Left;
-            NewWindow.Show();
-            this.Close();
-        }
-
         private void btnVacance_Click(object sender, RoutedEventArgs e)
         {
-            RoomChoice = "192.168.56.2";
-            (App.Current as App).SessionChatRoom = RoomChoice;
+            IdRoomChoice = "1";
+            (App.Current as App).SessionChatRoom = IdRoomChoice;
             ChatRoom NewWindow = new ChatRoom();
             NewWindow.Top = this.Top;
             NewWindow.Left = this.Left;
             NewWindow.Show();
             this.Close();
         }
+        private void btnPolitique_Click(object sender, RoutedEventArgs e)
+        {
+            IdRoomChoice = "2";
+            (App.Current as App).SessionChatRoom = IdRoomChoice;
+            ChatRoom NewWindow = new ChatRoom();
+            NewWindow.Top = this.Top;
+            NewWindow.Left = this.Left;
+            NewWindow.Show();
+            this.Close();
+        }
+
+        
 
         private void btnScienceFiction_Click(object sender, RoutedEventArgs e)
         {
-            RoomChoice = "192.168.56.3";
-            (App.Current as App).SessionChatRoom = RoomChoice;
+            IdRoomChoice = "3";
+            (App.Current as App).SessionChatRoom = IdRoomChoice;
             ChatRoom NewWindow = new ChatRoom();
             NewWindow.Top = this.Top;
             NewWindow.Left = this.Left;
