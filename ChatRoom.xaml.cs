@@ -42,20 +42,24 @@ namespace ChatRoomProject
         {
             InitializeComponent();
 
-            IpAdresstextBox.Text = Convert.ToString((App.Current as App).SessionChatRoom);
+            // Affichage du nom de la chatRoom adéquate
+            NomChatRoom.Text = Convert.ToString((App.Current as App).SessionChatRoom);
 
+            // Création d'un timer qui permettra plus loin de refresh une fonction toute les 0.5 secondes
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += dispatcherTimerReloadFunction_Tick;
             timer.Start();
 
         }
 
+        // Boutton de Fermeture de l'application
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        // Fonction affichant les messages, avec l'heure reçus, n'affiche qu'une fois le dernier message reçus
         private void dispatcherTimerReloadFunction_Tick(object sender, EventArgs e)
         {
             if (ConditionChatRoomSpecific == (App.Current as App).SessionChatRoom)
@@ -68,7 +72,7 @@ namespace ChatRoomProject
             }
         }
 
-        // Event permettant de DragMove l'application
+        // Event permettant de déplacer (DragMove) l'application
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -98,9 +102,9 @@ namespace ChatRoomProject
                 master.Send(p.ToBytes());//send to server
                 LastMessage = (p.Gdata[0]+ p.Gdata[1]);
             }
-            catch//check si on ne peux pas se co et reboucle
+            catch // Si la connexion échoue, message d'erreur puis retour à notre window
             {
-                MessageBox.Show("Erreur de connexion a l'host, cette ChatRoom n'existe pas !", "Echec", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Erreur de connexion a l'host, veillez réessayer en insérant la bonne adresse ip du serveur !", "Echec", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             // Thread avec le serveur

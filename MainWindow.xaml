@@ -9,17 +9,28 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
 
     <Grid >
+        <!-- Background de l'application, de la bordure inférieur-->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
                 <GradientStop Color="#FFE63070" Offset="1" />
                 <GradientStop Color="#FFFE8704" Offset="0" />
             </LinearGradientBrush>
-
         </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown">
-            
-        </Border>
+        
+        <!-- Bordure inférieur, réalisé avec un gradient de couleur-->
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown"></Border>
+
+        <!-- Bouton de fermeture d'application -->
+        <StackPanel Width="100" Margin="700,0,0,0">
+            <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
+                 ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
+                <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
+            </Button>
+        </StackPanel>
+        <!-- Bouton "radio" d'inscription -->
         <RadioButton Content="Pas encore de compte ? Inscrivez-vous !" Foreground="DeepSkyBlue" Width="250" Height="60"  Margin="544,211,6,179" Click="btnInscription_Click"/>
+        
+        <!-- Panel de connexion -->
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
                 <TextBox x:Name="ServerConnexionTextBox" TextWrapping="Wrap" Text="" Width="120" Margin="115,20" IsReadOnly="True"/>
@@ -46,13 +57,6 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Width="100">
-                <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
-                 ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
-                    <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
-                </Button>
-            </StackPanel>
-
         </StackPanel>
 
     </Grid>

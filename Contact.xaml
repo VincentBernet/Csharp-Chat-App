@@ -8,36 +8,47 @@
         mc:Ignorable="d"
         Title="Contact" Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <Grid>
+        <!-- Background de l'application, de la bordure inférieur-->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
                 <GradientStop Color="#FFE63070" Offset="1" />
                 <GradientStop Color="#FFFE8704" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown" Margin="10,0,-10,0">
 
-        </Border>
+        <!-- Bordure inférieur, réalisé avec un gradient de couleur-->
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown"></Border>
 
-        <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
-        <TextBox x:Name="ServerIPtextBox" Margin="66,46,575,380" Background="#FFF7EDED" BorderBrush="Black"  />
-        <TextBox x:Name="ServerPorttextBox" Margin="302,46,339,380" Background="#FFF7EDED" BorderBrush="Black"  />
-
-        <TextBox x:Name="ClientIPtextBox" Margin="66,100,575,326" Background="#FFF7EDED" BorderBrush="Black"  />
-        <TextBox x:Name="ClientPorttextBox" Margin="302,100,339,326" Background="#FFF7EDED" BorderBrush="Black"  />
-
-        <TextBox x:Name="ChatScreentextBox" Margin="102,220,215,160" Background="#FFF7EDED" BorderBrush="Black"  />
-        <TextBox x:Name="MessagetextBox" Margin="102,311,299,117" Background="#FFF7EDED" BorderBrush="Black"  />
-
-
-        <StackPanel Width="100" Margin="690,-10,10,10">
+        <!-- Bouton de fermeture d'application -->
+        <StackPanel Width="100" Margin="702,0,-2,17">
             <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
                 <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
             </Button>
         </StackPanel>
-        <Button x:Name="Connecbutton" Content="Connect"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Margin="526,101,0,0" Height="24"/>
-        <Button x:Name="Startbutton" Content="Start"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Margin="526,46,0,0" Height="24"/>
-        <Button x:Name="Sendbutton" Content="Send"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="69" Margin="516,309,0,0" Height="24"/>
-        <Button x:Name="Actualiser" Content="Actualiser"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="69" Margin="650,233,0,0" Height="24"/>
+
+        <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
+
+        <!-- Panel ChatBox DM -->
+        <TextBox x:Name="ChatScreentextBox" Margin="476,50,99,162" Background="#FFF7EDED" BorderBrush="Black"  />
+        <TextBox x:Name="MessagetextBox" Margin="477,297,174,126" Background="#FFF7EDED" BorderBrush="Black"  />
+        <Button x:Name="NameConversation" Content="Nom Utilisateur"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="225" Height="24" Margin="477,20,0,0"/>
+        <Button x:Name="Sendbutton" Content="Envoi" Click="Sendbutton_Click" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="69" Margin="633,297,0,0" Height="27"/>
+
+        
+        <!-- Panel Mes Favoris -->
+        <StackPanel Margin="0,0,451,211">
+        <TextBlock Text="Mes Contacts Favoris :" Margin="20,20,0,0" Foreground="White" TextAlignment="Justify" FontSize="20" FontFamily="Tahoma"/>
+        </StackPanel>
+        
+        
+        
+        <!-- Panel : Choix du destinataire -->
+        <TextBlock Text="Entrer le nom de votre destinataire :" Margin="23,244,451,161" Foreground="White" TextAlignment="Justify" FontSize="20" FontFamily="Tahoma"/>
+        <StackPanel Orientation="Horizontal" Margin="130,290,420,129">
+            <materialDesign:PackIcon Kind="Forum" Width="25" Height="25" Foreground="White"/>
+            <TextBox x:Name="SelectionDestinataire"  Margin="10 0" materialDesign:HintAssist.Hint="Nom Destinataire" Foreground="White" Width="150" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"/>
+        </StackPanel>
+        <Button x:Name="ConnectDesti" Content="Let's go !" Click="ConnectDesti_Click"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Height="27" Margin="24,292,0,0"/>
     </Grid>
 </Window>
