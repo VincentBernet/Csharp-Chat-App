@@ -13,6 +13,7 @@ namespace ChatRoomProject
     /// </summary>
     public partial class App : Application
     {
+        // Déclaration de variable "global" à toutes les pages de l'application
         public string Session { get; set; }
         public String SessionChatRoom { get; set; }
     }

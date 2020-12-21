@@ -26,7 +26,7 @@
         </StackPanel>
         <StackPanel  Margin="19,80,50,32">
             <TextBox x:Name="IpAdressTexttextBox"   Background="#FFF7EDED" BorderBrush="Black" Height="31" Margin="0,0,554,15"  Text="Adresse Ip ChatRoom :" IsReadOnly="true"  />
-            <TextBox x:Name="IpAdresstextBox"   Background="#FFF7EDED" BorderBrush="Black" Height="31" Margin="200,-47,350,15"  Text=""  />
+            <TextBox x:Name="NomChatRoom"   Background="#FFF7EDED" BorderBrush="Black" Height="31" Margin="200,-47,350,15"  Text=""  />
             
             
             <TextBox x:Name="ChatScreentextBox" Background="#FFF7EDED" BorderBrush="Black" Height="200" IsReadOnly="true" />

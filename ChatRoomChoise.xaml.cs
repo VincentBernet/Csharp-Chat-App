@@ -43,9 +43,10 @@ namespace ChatRoomProject
                 Button newBtn = new Button();
 
                 newBtn.Content = line;
-                newBtn.Name = line;
-                newBtn.Height = 20;
-                newBtn.Width = 160;
+                newBtn.FontSize = 13;
+                newBtn.Height = 30;
+                newBtn.Width = 180;
+                newBtn.Margin = new Thickness(2);
                 newBtn.Click += btnChatRoomChoosed_Click;
 
                 InsertionPlace.Children.Add(newBtn);
@@ -60,7 +61,7 @@ namespace ChatRoomProject
         private void btnChatRoomChoosed_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            (App.Current as App).SessionChatRoom = btn.Name;
+            (App.Current as App).SessionChatRoom = btn.Content.ToString();
             ChatRoom NewWindow = new ChatRoom();
             NewWindow.Top = this.Top;
             NewWindow.Left = this.Left;

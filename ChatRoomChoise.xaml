@@ -34,7 +34,7 @@
 
         <!-- Join Chat Room Panel-->
         <TextBlock Text="Rejoindre une ChatRoom" Margin="361,65,75,340" Foreground="White" TextAlignment="Center" FontSize="30" FontFamily="Tahoma"/>
-        <Expander Margin="380,129,74,126" Background="#1D8348 " Cursor="Cross" IsExpanded="False" RenderTransformOrigin="0.5,0.5" >
+        <Expander Margin="371,122,74,108" Background="#1D8348 " Cursor="Cross" IsExpanded="True" RenderTransformOrigin="0.5,0.5" BorderBrush="Azure" BorderThickness="5">
 
             <Expander.Header >
                 <TextBlock Foreground="#100E17"  xml:space="preserve" Margin="0,0,0,0" Height="21" Canvas.Top="-10" FontWeight="Bold" TextDecorations="Underline">Liste des Rooms disponibles :</TextBlock>

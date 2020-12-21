@@ -44,7 +44,15 @@ namespace ChatRoomProject {
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 25 "..\..\MainWindow.xaml"
+        #line 23 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button btnExit;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 30 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox ServerConnexionTextBox;
         
@@ -52,7 +60,7 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 34 "..\..\MainWindow.xaml"
+        #line 39 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox txtUsername;
         
@@ -60,7 +68,7 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 39 "..\..\MainWindow.xaml"
+        #line 44 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.PasswordBox txtPassword;
         
@@ -68,17 +76,9 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 45 "..\..\MainWindow.xaml"
+        #line 50 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnLogin;
-        
-        #line default
-        #line hidden
-        
-        
-        #line 51 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btnExit;
         
         #line default
         #line hidden
@@ -115,43 +115,43 @@ namespace ChatRoomProject {
             {
             case 1:
             
-            #line 19 "..\..\MainWindow.xaml"
+            #line 20 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Border)(target)).MouseDown += new System.Windows.Input.MouseButtonEventHandler(this.Border_MouseDown);
             
             #line default
             #line hidden
             return;
             case 2:
+            this.btnExit = ((System.Windows.Controls.Button)(target));
             
-            #line 22 "..\..\MainWindow.xaml"
-            ((System.Windows.Controls.RadioButton)(target)).Click += new System.Windows.RoutedEventHandler(this.btnInscription_Click);
+            #line 23 "..\..\MainWindow.xaml"
+            this.btnExit.Click += new System.Windows.RoutedEventHandler(this.btnExit_Click);
             
             #line default
             #line hidden
             return;
             case 3:
-            this.ServerConnexionTextBox = ((System.Windows.Controls.TextBox)(target));
-            return;
-            case 4:
-            this.txtUsername = ((System.Windows.Controls.TextBox)(target));
-            return;
-            case 5:
-            this.txtPassword = ((System.Windows.Controls.PasswordBox)(target));
-            return;
-            case 6:
-            this.btnLogin = ((System.Windows.Controls.Button)(target));
             
-            #line 45 "..\..\MainWindow.xaml"
-            this.btnLogin.Click += new System.Windows.RoutedEventHandler(this.btnLogin_Click);
+            #line 27 "..\..\MainWindow.xaml"
+            ((System.Windows.Controls.RadioButton)(target)).Click += new System.Windows.RoutedEventHandler(this.btnInscription_Click);
             
             #line default
             #line hidden
             return;
+            case 4:
+            this.ServerConnexionTextBox = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 5:
+            this.txtUsername = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 6:
+            this.txtPassword = ((System.Windows.Controls.PasswordBox)(target));
+            return;
             case 7:
-            this.btnExit = ((System.Windows.Controls.Button)(target));
+            this.btnLogin = ((System.Windows.Controls.Button)(target));
             
-            #line 51 "..\..\MainWindow.xaml"
-            this.btnExit.Click += new System.Windows.RoutedEventHandler(this.btnExit_Click);
+            #line 50 "..\..\MainWindow.xaml"
+            this.btnLogin.Click += new System.Windows.RoutedEventHandler(this.btnLogin_Click);
             
             #line default
             #line hidden
