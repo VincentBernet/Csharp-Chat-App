@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ChatRoomChoise" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <Grid>
-        
+
         <!-- Background visual, border and exit button -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
@@ -23,7 +23,7 @@
                 <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
             </Button>
         </StackPanel>
-        
+
         <!-- Creation Panel Chat Room -->
         <TextBlock Text="Création ChatRoom" Margin="-18,66,454,339" Foreground="White" TextAlignment="Center" FontSize="30" FontFamily="Tahoma"/>
         <StackPanel Orientation="Horizontal" Margin="35,172,515,247">
@@ -39,39 +39,16 @@
             <Expander.Header >
                 <TextBlock Foreground="#100E17"  xml:space="preserve" Margin="0,0,0,0" Height="21" Canvas.Top="-10" FontWeight="Bold" TextDecorations="Underline">Liste des Rooms disponibles :</TextBlock>
             </Expander.Header>
-
-            <FlowDocumentScrollViewer>
-                <FlowDocument>
-                    <BlockUIContainer>
-                        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
+            <StackPanel Name="InsertionPlace"></StackPanel>
+            <!--<FlowDocumentScrollViewer Name="FDJoin">
+            <FlowDocument>
+                <BlockUIContainer>
+                    <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
             materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448" 
             Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btn1" Click="btnChatRoomChoosed_Click"  Content="Science-Fiction" Margin="0,0,0,5" />
-                    </BlockUIContainer>
-                    <BlockUIContainer>
-                        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
-            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448" 
-            Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btn2" Click="btnScienceFiction_Click"  Content="Science-Fiction" Margin="5,0,5,5"/>
-
-                    </BlockUIContainer>
-                    <BlockUIContainer>
-                        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
-            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448" 
-            Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btn3" Click="btnScienceFiction_Click"  Content="Science-Fiction" Margin="5,0,5,5"/>
-
-                    </BlockUIContainer>
-                    <BlockUIContainer>
-                        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
-            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448" 
-            Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btn4" Click="btnScienceFiction_Click"  Content="Science-Fiction" Margin="5,0,5,5"/>
-
-                    </BlockUIContainer>
-                    <BlockUIContainer>
-                        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" Width="160"
-            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448" 
-            Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btn5" Click="btnScienceFiction_Click"  Content="Science-Fiction" Margin="5,0,5,5"/>
-                    </BlockUIContainer>
-                </FlowDocument>
-            </FlowDocumentScrollViewer>
+                </BlockUIContainer>
+            </FlowDocument>
+            </FlowDocumentScrollViewer>-->
         </Expander>
 
     </Grid>

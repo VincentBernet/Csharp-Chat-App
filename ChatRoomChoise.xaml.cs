@@ -25,40 +25,42 @@ namespace ChatRoomProject
     
     public partial class ChatRoomChoise : Window
     {
-        public static int IdRoomChoice =0;
         public static string inputChatRoomName;
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\ChatRoom.txt";
+        
         public ChatRoomChoise()
         {
             InitializeComponent();
+
+            using (StreamWriter Creation = File.AppendText(path))
+            {
+                Creation.Close();
+            }
+
+            int i = 0;
+            foreach (string line in File.ReadLines(path))
+            {
+                Button newBtn = new Button();
+
+                newBtn.Content = line;
+                newBtn.Name = line;
+                newBtn.Height = 20;
+                newBtn.Width = 160;
+                newBtn.Click += btnChatRoomChoosed_Click;
+
+                InsertionPlace.Children.Add(newBtn);
+                i += 1;
+            }
+            
         }
         // Page de redirection vers la windows ChatRoom, ici choisir une chatRoom va changer l'adresse IP du serveur, permettant de communiquer seulement 
         //entre personne ayant sélectionner cette même chatRoom
-        private void btnVacance_Click(object sender, RoutedEventArgs e)
-        {
-            IdRoomChoice = 1;
-            (App.Current as App).SessionChatRoom = IdRoomChoice;
-            ChatRoom NewWindow = new ChatRoom();
-            NewWindow.Top = this.Top;
-            NewWindow.Left = this.Left;
-            NewWindow.Show();
-            this.Close();
-        }
-        private void btnPolitique_Click(object sender, RoutedEventArgs e)
-        {
-            IdRoomChoice = 2;
-            (App.Current as App).SessionChatRoom = IdRoomChoice;
-            ChatRoom NewWindow = new ChatRoom();
-            NewWindow.Top = this.Top;
-            NewWindow.Left = this.Left;
-            NewWindow.Show();
-            this.Close();
-        }
+        
 
         private void btnChatRoomChoosed_Click(object sender, RoutedEventArgs e)
         {
-            IdRoomChoice = 3;
-            (App.Current as App).SessionChatRoom = IdRoomChoice;
+            Button btn = (Button)sender;
+            (App.Current as App).SessionChatRoom = btn.Name;
             ChatRoom NewWindow = new ChatRoom();
             NewWindow.Top = this.Top;
             NewWindow.Left = this.Left;
@@ -67,16 +69,6 @@ namespace ChatRoomProject
         }
 
         
-        private void btnScienceFiction_Click(object sender, RoutedEventArgs e)
-        {
-            IdRoomChoice = 1;
-            (App.Current as App).SessionChatRoom = IdRoomChoice;
-            ChatRoom NewWindow = new ChatRoom();
-            NewWindow.Top = this.Top;
-            NewWindow.Left = this.Left;
-            NewWindow.Show();
-            this.Close();
-        }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -91,32 +83,26 @@ namespace ChatRoomProject
         private void btnCreationbutton_Click(object sender, RoutedEventArgs e)
         {
             inputChatRoomName = NewChatRoomName.Text;
-
             if (inputChatRoomName == "")
             {
                 MessageBox.Show("Veillez renseigner un nom valide pour votre nouvelle Chat Room ", "Champs Invalides", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
+    
             using (StreamWriter sw = File.AppendText(path))
             {
-                foreach (string line in File.ReadLines(path))
-                {
-                    if (line=="salut")
-                    {
-                    IdRoomChoice += 1;
-                    }
-                    return;
-                }
-                sw.WriteLine(inputChatRoomName + ":" + IdRoomChoice);
-                MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "" + IdRoomChoice, MessageBoxButton.OK, MessageBoxImage.Information);
+                sw.WriteLine(inputChatRoomName);
+                MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
+                sw.Close();
                 ChatRoomChoise NewWindow = new ChatRoomChoise();
                 NewWindow.Top = this.Top;
                 NewWindow.Left = this.Left;
                 NewWindow.Show();
-                this.Close();
                 return;
             }
+
+            
         }
     }
 }

@@ -36,7 +36,7 @@ namespace ChatRoomProject
         public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
-        public static int ConditionChatRoomSpecific;
+        public static string ConditionChatRoomSpecific;
         public static Boolean Connection = false;
         public ChatRoom()
         {
@@ -87,7 +87,7 @@ namespace ChatRoomProject
             {
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
                 master.Connect(ipe);
-                MessageBox.Show("Connection à la ChatRoom \"Passionné de politique\"", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Connection à la ChatRoom \""+ (App.Current as App).SessionChatRoom+"\"", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                 Connection = true;
 
                 Packet p = new Packet(PacketType.Chat, id);
@@ -162,7 +162,7 @@ namespace ChatRoomProject
                     break;
 
                 case PacketType.Chat:
-                    ConditionChatRoomSpecific = Convert.ToInt32((p.Gdata[2]));
+                    ConditionChatRoomSpecific = (p.Gdata[2]);
                     LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
                     break;
 
