@@ -18,12 +18,12 @@
 
         <Button Height="Auto" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
-                         Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btnChatRoom" Click="btnChatRoom_Click"  Content="ChatRoom" Margin="479,183,180,213" Width="141"/>
+                         Background="#D94448" Foreground="White" ToolTip="ChatRoom" x:Name="btnChatRoom" Click="btnChatRoom_Click"  Content="Rejoindre une ChatRoom" Margin="476,183,130,213"/>
 
 
         <Button Height="Auto" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
-                         Background="#D94448" Foreground="White" ToolTip="Login" x:Name="btnContact" Click="btnContact_Click"  Content="Conversation&#xD;&#xA;     Privés&#xD;&#xA;" Margin="180,183,479,213" TextOptions.TextFormattingMode="Display"/>
+                         Background="#D94448" Foreground="White" ToolTip="Message Privé" x:Name="btnContact" Click="btnContact_Click"  Content="Conversation Privés" Margin="120,183,479,213" TextOptions.TextFormattingMode="Display"/>
         <StackPanel Width="100" Margin="700,0,0,0">
             <Button Margin="22,20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">

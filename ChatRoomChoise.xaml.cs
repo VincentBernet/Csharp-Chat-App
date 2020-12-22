@@ -17,6 +17,8 @@ using System.IO;
 using System.Threading;
 using ServerData;
 using System.Net;
+using System.Windows.Threading;
+
 namespace ChatRoomProject
 {
     /// <summary>
@@ -26,6 +28,8 @@ namespace ChatRoomProject
     public partial class ChatRoomChoise : Window
     {
         public static string inputChatRoomName;
+        public string OldLastChat;
+        public string NewLastChat;
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\ChatRoom.txt";
         
         public ChatRoomChoise()
@@ -37,8 +41,13 @@ namespace ChatRoomProject
                 Creation.Close();
             }
 
-            int i = 0;
-            foreach (string line in File.ReadLines(path))
+            // Création d'un timer qui permettra plus loin de refresh une fonction toute les 0.5 secondes
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += dispatcherTimerReloadFunction_Tick;
+            timer.Start();
+
+            foreach (string line in File.ReadAllLines(path))
             {
                 Button newBtn = new Button();
 
@@ -50,13 +59,36 @@ namespace ChatRoomProject
                 newBtn.Click += btnChatRoomChoosed_Click;
 
                 InsertionPlace.Children.Add(newBtn);
-                i += 1;
+                OldLastChat = line;
             }
             
         }
         // Page de redirection vers la windows ChatRoom, ici choisir une chatRoom va changer l'adresse IP du serveur, permettant de communiquer seulement 
         //entre personne ayant sélectionner cette même chatRoom
-        
+
+        private void dispatcherTimerReloadFunction_Tick(object sender, EventArgs e)
+        {
+            foreach (string line in File.ReadAllLines(path))
+            {
+                NewLastChat = line;
+            }
+                if (OldLastChat != NewLastChat)
+                {
+                    Button newBtn = new Button();
+
+                    newBtn.Content = NewLastChat;
+                    newBtn.FontSize = 13;
+                    newBtn.Height = 30;
+                    newBtn.Width = 180;
+                    newBtn.Margin = new Thickness(2);
+                    newBtn.Click += btnChatRoomChoosed_Click;
+
+                    InsertionPlace.Children.Add(newBtn);
+                    OldLastChat = NewLastChat;
+            }
+            
+        }
+
 
         private void btnChatRoomChoosed_Click(object sender, RoutedEventArgs e)
         {
@@ -94,16 +126,17 @@ namespace ChatRoomProject
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine(inputChatRoomName);
-                MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
                 sw.Close();
-                ChatRoomChoise NewWindow = new ChatRoomChoise();
-                NewWindow.Top = this.Top;
-                NewWindow.Left = this.Left;
-                NewWindow.Show();
+                MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
             
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

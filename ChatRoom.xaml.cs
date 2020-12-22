@@ -100,7 +100,6 @@ namespace ChatRoomProject
                 p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue "+SessionName);
                 p.Gdata.Add(Convert.ToString((App.Current as App).SessionChatRoom));
                 master.Send(p.ToBytes());//send to server
-                LastMessage = (p.Gdata[0]+ p.Gdata[1]);
             }
             catch // Si la connexion échoue, message d'erreur puis retour à notre window
             {
