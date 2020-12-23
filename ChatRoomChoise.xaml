@@ -16,9 +16,7 @@
                 <GradientStop Color="#8E44AD" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown">
-            <TextBox TextWrapping="Wrap" Text="TextBox" Margin="51,298,479,26"/>
-        </Border>
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown"></Border>
         <StackPanel Width="100" Margin="700,0,0,0">
             <Button Margin="22,20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">

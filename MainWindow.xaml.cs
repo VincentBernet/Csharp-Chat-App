@@ -74,7 +74,10 @@ namespace ChatRoomProject
                 return;
             }
 
-           
+            using (StreamWriter Creation = File.AppendText(path))
+            {
+                Creation.Close();
+            }
 
             foreach (string line in File.ReadLines(path))
             {

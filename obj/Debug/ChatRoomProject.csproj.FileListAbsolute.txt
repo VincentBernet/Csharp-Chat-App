@@ -32,3 +32,5 @@ C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\Inscription.g.cs
 C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\Inscription.baml
 C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\ChatRoomChoise.g.cs
 C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\ChatRoomChoise.baml
+C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\ConversationPrivée.g.cs
+C:\Users\Vincent\source\repos\ChatRoomProject\obj\Debug\ConversationPrivée.baml

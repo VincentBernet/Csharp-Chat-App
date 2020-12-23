@@ -29,12 +29,11 @@ namespace ChatRoomProject
     {
 
         public static Socket master;
-        public static string name;
-        public static string id;
+        public static string ip;
         public static string LastMessage;
-        public static string LastMessageDoNotRepeat;
         public static string ConditionChatRoomSpecific;
         public static Boolean Connection = false;
+        public static string PseudoDemande;
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
 
         public Contact()
@@ -46,12 +45,9 @@ namespace ChatRoomProject
             timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += dispatcherTimerReloadFunction_Tick;
             timer.Start();
-        }
 
-        private void ConnectDesti_Click(object sender, RoutedEventArgs e)
-        {
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            string ip = "192.168.56.1";
+            ip = "192.168.56.1";
 
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
 
@@ -59,34 +55,34 @@ namespace ChatRoomProject
             {
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
                 master.Connect(ipe);
-                Connection = true;
+                MessageBox.Show("Connexion au serveur!", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
             catch // Si la connexion échoue, message d'erreur puis retour à notre window
             {
                 MessageBox.Show("Erreur de connexion au serveur, veillez réessayer en insérant la bonne adresse ip du serveur !", "Echec", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
+
             // Thread avec le serveur
             Thread t = new Thread(Data_IN);
             t.Start();
-
-
-
-
-            foreach (string line in File.ReadLines(path))
-            {
-                if (line.Contains(SelectionDestinataire.Text + ":"))
+        }
+            private void ConnectDesti_Click(object sender, RoutedEventArgs e)
+        {
+                foreach (string line in File.ReadLines(path))
                 {
-                    Packet p = new Packet(PacketType.Chat, id);
-                    p.Gdata.Add(SelectionDestinataire.Text);
-                    p.Gdata.Add("");
-                    master.Send(p.ToBytes());//send to server
-                    (App.Current as App).SessionDestinataire = SelectionDestinataire.Text;
-                    MessageBox.Show("Vous pouvez maintenant chatter avec votre destinataire : " + (App.Current as App).SessionDestinataire, "Chatter !", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Connection = true;
-                    return;
+                    if (line.Contains(SelectionDestinataire.Text + ":"))
+                    {
+                        Packet p = new Packet(PacketType.Chat, ip);
+                        p.Gdata.Add((App.Current as App).Session);
+                        p.Gdata.Add(SelectionDestinataire.Text);
+                        master.Send(p.ToBytes());//send to server
+                        (App.Current as App).SessionDestinataire = SelectionDestinataire.Text;
+                        MessageBox.Show("Vous avez envoyé une demande de conversation privé à : " + (App.Current as App).SessionDestinataire, "Invation envoyé", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
                 }
-            }
             MessageBox.Show("Ce destinataire n'existe pas dans notre base de donnée, veillez indiqué un destinataire existant et valide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
@@ -94,31 +90,33 @@ namespace ChatRoomProject
 
         private void dispatcherTimerReloadFunction_Tick(object sender, EventArgs e)
         {
-            if (ConditionChatRoomSpecific == (App.Current as App).Session)
-            {
-                if (LastMessageDoNotRepeat != LastMessage)
+            if ((ConditionChatRoomSpecific == (App.Current as App).Session))
+             {
+                MessageBoxResult result = MessageBox.Show("Hey l'utilisateur "+PseudoDemande+" souhaite rentrer en contact avec vous, êtes vous partant ?","Nouveau contact", MessageBoxButton.YesNo);
+                switch (result)
                 {
-                    ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString() + " | " + LastMessage + "\n";
-                    LastMessageDoNotRepeat = LastMessage;
-                }
-            }
-        }
-        private void Sendbutton_Click(object sender, RoutedEventArgs e)
-        {
-            string input = MessagetextBox.Text;
+                    case MessageBoxResult.Yes:
+                        (App.Current as App).SessionDestinataire = PseudoDemande;
+                        Packet p = new Packet(PacketType.Chat, ip);
+                        p.Gdata.Add(ConditionChatRoomSpecific);
+                        p.Gdata.Add(PseudoDemande);
+                        master.Send(p.ToBytes());//send to server
 
-            if (Connection != true)
-            {
-                MessageBox.Show("Pas de Destinataire, veillez vous renseigné le destinaire souhaité en premier lieu!", "Impossibilité d'envoyer un message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ConversationPrivée NewWindow = new ConversationPrivée();
+                        NewWindow.Top = this.Top;
+                        NewWindow.Left = this.Left;
+                        NewWindow.Show();
+                        this.Close();
+                        break;
+                    case MessageBoxResult.No:
+                        MessageBox.Show("Demande refusée!", "Refus Conversation");
+                        break;
+                }
+                ConditionChatRoomSpecific = "";
                 return;
             }
-            Packet p = new Packet(PacketType.Chat, id);
-            string SessionName = (App.Current as App).Session;
-            p.Gdata.Add(SessionName);// get name
-            p.Gdata.Add(input);//get input
-            p.Gdata.Add(Convert.ToString((App.Current as App).SessionChatRoom));
-            master.Send(p.ToBytes());//send to server
         }
+        
 
         // Boutton de Fermeture de l'application
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -158,11 +156,13 @@ namespace ChatRoomProject
             {
                 case PacketType.Registration:
 
-                    id = p.Gdata[0];
+                    ip = p.Gdata[0];
                     break;
 
                 case PacketType.Chat:
-                    ConditionChatRoomSpecific = (p.Gdata[0]);
+                    PseudoDemande = p.Gdata[0];
+                    ConditionChatRoomSpecific = p.Gdata[1];
+                    
                     LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
                     break;
 

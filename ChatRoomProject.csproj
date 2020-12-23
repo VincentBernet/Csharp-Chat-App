@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConversationPrivée.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GeneralChatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +103,9 @@
     </Compile>
     <Compile Include="Contact.xaml.cs">
       <DependentUpon>Contact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConversationPrivée.xaml.cs">
+      <DependentUpon>ConversationPrivée.xaml</DependentUpon>
     </Compile>
     <Compile Include="GeneralChatPage.xaml.cs">
       <DependentUpon>GeneralChatPage.xaml</DependentUpon>
