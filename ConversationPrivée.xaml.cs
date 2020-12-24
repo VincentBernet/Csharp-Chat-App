@@ -73,6 +73,7 @@ namespace ChatRoomProject
             timer.Start();
         }
 
+        // Fonction pour afficher les messages dans la chatbox, se reload toutes les 0.5 secondes
         private void Reload(object sender, EventArgs e)
         {
             if (ConditionChatRoomSpecific ==  (App.Current as App).SessionDestinataire + (App.Current as App).Session)

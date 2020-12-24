@@ -44,7 +44,7 @@ namespace ChatRoomProject {
     public partial class ConversationPrivée : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 25 "..\..\ConversationPrivée.xaml"
+        #line 27 "..\..\ConversationPrivée.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnExit;
         
@@ -52,7 +52,7 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 33 "..\..\ConversationPrivée.xaml"
+        #line 35 "..\..\ConversationPrivée.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox ChatScreentextBox;
         
@@ -60,7 +60,7 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 34 "..\..\ConversationPrivée.xaml"
+        #line 36 "..\..\ConversationPrivée.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MessagetextBox;
         
@@ -68,7 +68,7 @@ namespace ChatRoomProject {
         #line hidden
         
         
-        #line 35 "..\..\ConversationPrivée.xaml"
+        #line 37 "..\..\ConversationPrivée.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Sendbutton;
         
@@ -116,7 +116,7 @@ namespace ChatRoomProject {
             case 2:
             this.btnExit = ((System.Windows.Controls.Button)(target));
             
-            #line 25 "..\..\ConversationPrivée.xaml"
+            #line 27 "..\..\ConversationPrivée.xaml"
             this.btnExit.Click += new System.Windows.RoutedEventHandler(this.btnExit_Click);
             
             #line default
@@ -131,7 +131,7 @@ namespace ChatRoomProject {
             case 5:
             this.Sendbutton = ((System.Windows.Controls.Button)(target));
             
-            #line 35 "..\..\ConversationPrivée.xaml"
+            #line 37 "..\..\ConversationPrivée.xaml"
             this.Sendbutton.Click += new System.Windows.RoutedEventHandler(this.Sendbutton_Click);
             
             #line default
