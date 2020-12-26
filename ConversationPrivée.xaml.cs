@@ -24,7 +24,7 @@ namespace ChatRoomProject
     /// <summary>
     /// Interaction logic for ConversationPrivée.xaml
     /// </summary>
-   
+   // Pas mal de correction à apporter
     public partial class ConversationPrivée : Window
     {
         public static Socket master;
