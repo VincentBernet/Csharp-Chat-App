@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ChatRoomProject"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ConversationPrivée" Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" Topmost="True">
+        Title="ConversationPrivée" Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" >
     <Grid>
         <!-- Background de l'application, de la bordure inférieur-->
             <Grid.Background>
@@ -30,7 +30,7 @@
             </StackPanel>
 
             <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
-        <TextBlock TextWrapping="Wrap" Text="Nom Interlocuteur" Foreground="white" Margin="343,36,351,392"/>
+        <TextBox Name ="DestinatiretextBox" TextWrapping="Wrap" Foreground="white" Margin="343,36,351,392"/>
         <StackPanel Margin="124,74,155,109">
             <TextBox x:Name="ChatScreentextBox" Background="#FFF7EDED" BorderBrush="Black" Height="200" IsReadOnly="true"  />
             <TextBox x:Name="MessagetextBox"   Background="#FFF7EDED" BorderBrush="Black" Height="40" Width="400" Text="" Margin="0,10,120.5,0"  />

@@ -67,8 +67,11 @@ namespace Server
                 }
                 catch(SocketException)
                 {
-                    Console.WriteLine("un client s'est deco");
-                    Thread.Sleep(10000);
+                    Console.WriteLine("Un client s'est déconnecté");
+                    Console.WriteLine("Le serveur ferme aussi");
+                    Thread.Sleep(1000);
+                    Environment.Exit(0);
+                    
                 }
             }
 

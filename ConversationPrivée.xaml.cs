@@ -40,21 +40,15 @@ namespace ChatRoomProject
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             string ip = "192.168.56.1";
-
+            Thread.Sleep(10000);
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
             try
             {
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
                 master.Connect(ipe);
-                MessageBox.Show("Connection à la ChatRoom \"" + (App.Current as App).SessionChatRoom + "\"", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                DestinatiretextBox.Text = Convert.ToString((App.Current as App).SessionDestinataire);
                 Connection = true;
 
-                Packet p = new Packet(PacketType.Chat, id);
-                string SessionName = (App.Current as App).Session;
-                p.Gdata.Add("");
-                p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue " + SessionName);
-                p.Gdata.Add(Convert.ToString((App.Current as App).SessionChatRoom));
-                master.Send(p.ToBytes());//send to server
             }
             catch // Si la connexion échoue, message d'erreur puis retour à notre window
             {

@@ -55,12 +55,11 @@ namespace ChatRoomProject
             {
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
                 master.Connect(ipe);
-                MessageBox.Show("Connexion au serveur!", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
             catch // Si la connexion échoue, message d'erreur puis retour à notre window
             {
                 MessageBox.Show("Erreur de connexion au serveur, veillez réessayer en insérant la bonne adresse ip du serveur !", "Echec", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
                 return;
             }
 
@@ -76,10 +75,10 @@ namespace ChatRoomProject
                     {
                         Packet p = new Packet(PacketType.Chat, ip);
                         p.Gdata.Add((App.Current as App).Session);
-                        p.Gdata.Add(SelectionDestinataire.Text);
+                        p.Gdata.Add(SelectionDestinataire.Text); 
                         master.Send(p.ToBytes());//send to server
                         (App.Current as App).SessionDestinataire = SelectionDestinataire.Text;
-                        MessageBox.Show("Vous avez envoyé une demande de conversation privé à : " + (App.Current as App).SessionDestinataire, "Invation envoyé", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Vous avez envoyé une demande de conversation privé à : " + (App.Current as App).SessionDestinataire, "Invitation envoyé", MessageBoxButton.OK, MessageBoxImage.Information);
                         return;
                     }
                 }
@@ -98,8 +97,8 @@ namespace ChatRoomProject
                     case MessageBoxResult.Yes:
                         (App.Current as App).SessionDestinataire = PseudoDemande;
                         Packet p = new Packet(PacketType.Chat, ip);
+                        p.Gdata.Add("DemandeConversationValide");
                         p.Gdata.Add(ConditionChatRoomSpecific);
-                        p.Gdata.Add(PseudoDemande);
                         master.Send(p.ToBytes());//send to server
 
                         ConversationPrivée NewWindow = new ConversationPrivée();
@@ -108,13 +107,34 @@ namespace ChatRoomProject
                         NewWindow.Show();
                         this.Close();
                         break;
+
                     case MessageBoxResult.No:
+
+                        Packet Refus = new Packet(PacketType.Chat, ip); 
+                        Refus.Gdata.Add(PseudoDemande+"RefusDemandeConversation");
+                        Refus.Gdata.Add(ConditionChatRoomSpecific);
+                        master.Send(Refus.ToBytes());//send to server
                         MessageBox.Show("Demande refusée!", "Refus Conversation");
                         break;
                 }
                 ConditionChatRoomSpecific = "";
                 return;
             }
+            if (PseudoDemande == "RefusDemandeConversation")
+            {
+                MessageBox.Show("Mister " + ConditionChatRoomSpecific + " ne souhaite pas communiquer avec vous", "Refus Conversation");
+            }
+                if (PseudoDemande == "DemandeConversationValide")
+            {
+                MessageBox.Show("Mister "+ConditionChatRoomSpecific+" a accepté votre demande, il est temps de chatter !", "Excellent");
+                ConversationPrivée NewWindow = new ConversationPrivée();
+                NewWindow.Top = this.Top;
+                NewWindow.Left = this.Left;
+                NewWindow.Show();
+                this.Close();
+            }
+
+
         }
         
 
