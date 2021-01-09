@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Contact" Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" >
     <Grid>
+        
         <!-- Background de l'application, de la bordure inférieur-->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
@@ -26,18 +27,11 @@
                 <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
             </Button>
         </StackPanel>
-
+        
+        <!-- Design : Image Logo-->
         <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
 
-        <!-- Panel ChatBox DM -->
-
-
-        <!-- Panel Mes Favoris -->
-        <StackPanel Margin="0,0,451,211"/>
-
-
-
-        <!-- Panel : Choix du destinataire -->
+        <!-- StackPanel : Choix du destinataire -->
         <TextBlock Text="Entrer le nom de votre destinataire :" Margin="171,70,303,335" Foreground="White" TextAlignment="Justify" FontSize="20" FontFamily="Tahoma"/>
         <StackPanel Orientation="Horizontal" Margin="171,120,411,299">
             <materialDesign:PackIcon Kind="Forum" Width="25" Height="25" Foreground="White"/>

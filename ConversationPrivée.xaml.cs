@@ -1,30 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.IO;
 using System.Net.Sockets;
 using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
+
 using System.Threading;
 using ServerData;
 using System.Windows.Threading;
 
 namespace ChatRoomProject
 {
-    /// <summary>
-    /// Interaction logic for ConversationPrivée.xaml
-    /// </summary>
-   // Pas mal de correction à apporter
+
+   // Page : Conversation Privée
     public partial class ConversationPrivée : Window
     {
         public static Socket master;
@@ -88,11 +75,11 @@ namespace ChatRoomProject
             }
         }
 
-
+        // Fonction d'envoi du message au serveur
         private void Sendbutton_Click(object sender, RoutedEventArgs e)
         {
             string input = MessagetextBox.Text;
-
+            // Vérification que nous sommes bien connecté au serveur
             if (Connection != true)
             {
                 MessageBox.Show("Pas de connexion détecté, veillez vous connecter au serveur d'abord !", "Impossibilité d'envoyer un message", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -101,8 +88,8 @@ namespace ChatRoomProject
             Packet p = new Packet(PacketType.Chat, id);
             p.Gdata.Add((App.Current as App).SessionDestinataire + (App.Current as App).Session);
             p.Gdata.Add(MessagetextBox.Text);
-            master.Send(p.ToBytes());//send to server
-            MessagetextBox.Text = "";
+            master.Send(p.ToBytes());  // Envoi du nom des interlocuteurs concaténés puis du message au serveur
+            MessagetextBox.Text = "";  // On libère notre champ d'envoi après l'envoie du dit message
         }
 
         // Boutton de Fermeture de l'application

@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
 
     <Grid >
-        <!-- Background de l'application, de la bordure inférieur-->
+        <!-- Background de l'application -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
                 <GradientStop Color="#FFE63070" Offset="1" />

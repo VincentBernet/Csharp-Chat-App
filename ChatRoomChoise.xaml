@@ -9,14 +9,18 @@
         Title="ChatRoomChoise" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <Grid>
 
-        <!-- Background visual, border and exit button -->
+        <!-- Nouveau background de l'application, linear background purple to green -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
                 <GradientStop Color="#1D8348" Offset="1" />
                 <GradientStop Color="#8E44AD" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
+
+        <!-- Bordure inférieur, réalisé avec un gradient de couleur-->
         <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown"></Border>
+
+        <!-- Bouton de fermeture d'application -->
         <StackPanel Width="100" Margin="700,0,0,0">
             <Button Margin="22,20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
@@ -35,12 +39,10 @@
         <!-- Join Chat Room Panel-->
         <TextBlock Text="Rejoindre une ChatRoom" Margin="361,65,75,340" Foreground="White" TextAlignment="Center" FontSize="30" FontFamily="Tahoma"/>
         <Expander  Margin="371,122,74,108" Background="#1D8348 " Cursor="Cross" IsExpanded="True" RenderTransformOrigin="0.5,0.5" BorderBrush="Azure" BorderThickness="5">
-
             <Expander.Header >
                 <TextBlock Foreground="#100E17"  xml:space="preserve" Margin="0,0,0,0" Height="21" Canvas.Top="-10" FontWeight="Bold" TextDecorations="Underline">Liste des Rooms disponibles :</TextBlock>
             </Expander.Header>
             <StackPanel Name="InsertionPlace"></StackPanel>
-           
         </Expander>
 
     </Grid>

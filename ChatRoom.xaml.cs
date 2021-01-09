@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;  
-using System.Windows.Shapes;
-using System.IO;
 using System.Net.Sockets;
 using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using ServerData;
 using System.Windows.Threading;
@@ -24,11 +12,7 @@ using System.Windows.Threading;
 
 
 namespace ChatRoomProject
-{
-    /// <summary>
-    /// Interaction logic for ChatRoom.xaml
-    /// </summary>
-   
+{   
     public partial class ChatRoom : Window
     {
         public static Socket master;
@@ -86,7 +70,11 @@ namespace ChatRoomProject
             string ip = "192.168.56.1";
 
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
-
+            if (Connection == true)
+            {
+                MessageBox.Show("Vous vous êtes déjà connecté à la ChatRoom, calmez vous l'ami", "Connexion", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             try
             {
                 IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
@@ -111,7 +99,7 @@ namespace ChatRoomProject
             t.Start();
         }
 
-        // "Réfraichissement" de notre page pour afficher les messages des autres utilisateurs, il faut que je trouve un event automatique qui s'active tout les X milisecondes.  
+        // "Rafraichissement" de notre page pour afficher les messages des autres utilisateurs, il faut que je trouve un event automatique qui s'active tout les X milisecondes.  
         // Envoie de notre message au serveur, modification adéquate de notre propre ChatRoom
         private void Sendbutton_Click(object sender, RoutedEventArgs e)
         { 
@@ -131,11 +119,11 @@ namespace ChatRoomProject
             MessagetextBox.Text = "";
         }
 
-       
 
 
 
 
+        // Listener des données envoyé par le serveur
         void Data_IN()
         {
             byte[] Buffer;

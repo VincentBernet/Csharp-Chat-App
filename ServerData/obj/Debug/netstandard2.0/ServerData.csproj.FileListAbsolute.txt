@@ -16,3 +16,12 @@ C:\Users\Vincent\Desktop\ProjetserverCsharp\ServerData\obj\Debug\netstandard2.0\
 C:\Users\Vincent\Desktop\ProjetserverCsharp\ServerData\obj\Debug\netstandard2.0\ServerData.csproj.CoreCompileInputs.cache
 C:\Users\Vincent\Desktop\ProjetserverCsharp\ServerData\obj\Debug\netstandard2.0\ServerData.dll
 C:\Users\Vincent\Desktop\ProjetserverCsharp\ServerData\obj\Debug\netstandard2.0\ServerData.pdb
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\bin\Debug\netstandard2.0\ServerData.deps.json
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\bin\Debug\netstandard2.0\ServerData.dll
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\bin\Debug\netstandard2.0\ServerData.pdb
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.csprojAssemblyReference.cache
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.AssemblyInfoInputs.cache
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.AssemblyInfo.cs
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.csproj.CoreCompileInputs.cache
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.dll
+C:\Users\Vincent\source\repos\ChatRoomProject\ServerData\obj\Debug\netstandard2.0\ServerData.pdb

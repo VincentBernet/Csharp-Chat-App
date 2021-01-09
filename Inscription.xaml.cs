@@ -1,28 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Net.Sockets;
 using System.IO;
-using System.Threading;
-using ServerData;
-using System.Net;
+
 
 namespace ChatRoomProject
 {
-    /// <summary>
-    /// Interaction logic for Inscription.xaml
-    /// </summary>
+
     public partial class Inscription : Window
     {
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
@@ -60,20 +43,20 @@ namespace ChatRoomProject
                 this.Close();
                 return;
             }
-
-
-
         }
 
+        // Boutton de Fermeture de l'application
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        // Event : Sélectionner l'application pour la déplacer
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 this.DragMove();
         }
+
     }
 }

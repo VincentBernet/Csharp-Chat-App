@@ -8,27 +8,31 @@
         mc:Ignorable="d"
         Title="ChatRoom" Height="450" Width="800"  WindowStyle="None" ResizeMode="NoResize" Topmost="True">
     <Grid>
+        <!-- Background de l'application -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
                 <GradientStop Color="#FFE63070" Offset="1" />
                 <GradientStop Color="#FFFE8704" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown">
-            <Button x:Name="Connectbutton"  Content="Connexion" Height="Auto" Margin="429,78,265,280" Click="Connectbutton_Click"/>
-            
-        </Border>
+        <!-- Bordure inférieur, réalisé avec un gradient de couleur-->
+        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#100E17" MouseDown="Border_MouseDown"></Border>
+
+        <!-- Bouton de fermeture d'application -->
         <StackPanel Width="100" Margin="686,0,14,0">
             <Button Margin="22,20" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="{x:Null}"
                  ToolTip="Close" x:Name="btnExit" Click="btnExit_Click">
                 <materialDesign:PackIcon Kind="Close" Foreground="White" Width="30" Height="30" />
             </Button>
         </StackPanel>
+        <!-- Bouton de connexion au serveur -->
+        <Button x:Name="Connectbutton"  Content="Connexion"  Click="Connectbutton_Click" Margin="434,80,259,338" Height="32"/>
+        
+        <!-- StackPanel : De la ChatBox-->
         <StackPanel  Margin="19,80,50,32">
             <TextBox x:Name="IpAdressTexttextBox"   Background="#FFF7EDED" BorderBrush="Black" Height="31" Margin="0,0,554,15"  Text="Adresse Ip ChatRoom :" IsReadOnly="true"  />
             <TextBox x:Name="NomChatRoom"   Background="#FFF7EDED" BorderBrush="Black" Height="31" Margin="200,-47,350,15"  Text=""  />
-            
-            
+
             <TextBox x:Name="ChatScreentextBox" Background="#FFF7EDED" BorderBrush="Black" Height="200" IsReadOnly="true" />
             <TextBox x:Name="MessagetextBox"   Background="#FFF7EDED" BorderBrush="Black" Height="40" Margin="0,15,73,0"  Text=""  />
             <Button x:Name="Sendbutton" Click="Sendbutton_Click" Content="Envoi" Height="40" Margin="664,-40,0,0"/>

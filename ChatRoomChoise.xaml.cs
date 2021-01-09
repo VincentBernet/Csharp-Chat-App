@@ -1,30 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Navigation;
-using System.Net.Sockets;
 using System.IO;
-using System.Threading;
-using ServerData;
-using System.Net;
 using System.Windows.Threading;
 
 namespace ChatRoomProject
 {
-    /// <summary>
-    /// Interaction logic for ChatRoomChoise.xaml
-    /// </summary>
-    
+
     public partial class ChatRoomChoise : Window
     {
         public static string inputChatRoomName;
@@ -36,6 +19,7 @@ namespace ChatRoomProject
         {
             InitializeComponent();
 
+            // Création de notre fichier text si n'existe pas
             using (StreamWriter Creation = File.AppendText(path))
             {
                 Creation.Close();
@@ -47,6 +31,7 @@ namespace ChatRoomProject
             timer.Tick += dispatcherTimerReloadFunction_Tick;
             timer.Start();
 
+            // Création initial de nos boutons de ChatRooms en lisant notre fichier text
             foreach (string line in File.ReadAllLines(path))
             {
                 Button newBtn = new Button();
@@ -63,9 +48,8 @@ namespace ChatRoomProject
             }
             
         }
-        // Page de redirection vers la windows ChatRoom, ici choisir une chatRoom va changer l'adresse IP du serveur, permettant de communiquer seulement 
-        //entre personne ayant sélectionner cette même chatRoom
 
+        // Reload fontion qui permet d'actualisé les ChatRooms Disponible, en créant un bouton correspondant pour chaque nouvel ligne de notre fichier text
         private void dispatcherTimerReloadFunction_Tick(object sender, EventArgs e)
         {
             foreach (string line in File.ReadAllLines(path))
@@ -89,7 +73,7 @@ namespace ChatRoomProject
             
         }
 
-
+        // Fonction de redirection vers la fenêtre ChatRoom, en passant le nom de la ChatRoom sélectionné en variable global / de session
         private void btnChatRoomChoosed_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -101,18 +85,7 @@ namespace ChatRoomProject
             this.Close();
         }
 
-        
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
+        // Fonction qui simplement écris dans le fichier text la nouvelle ChatRoom Créée, en vérifiant quelques conditions
         private void btnCreationbutton_Click(object sender, RoutedEventArgs e)
         {
             inputChatRoomName = NewChatRoomName.Text;
@@ -122,7 +95,6 @@ namespace ChatRoomProject
                 return;
             }
 
-    
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine(inputChatRoomName);
@@ -130,13 +102,20 @@ namespace ChatRoomProject
                 MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-
-            
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        // Boutton de Fermeture de l'application
+        private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
+
+        // Event permettant de déplacer (DragMove) l'application
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
+        }
+
     }
 }

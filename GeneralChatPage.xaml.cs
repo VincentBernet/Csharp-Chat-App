@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace ChatRoomProject
 {
-    /// <summary>
-    /// Interaction logic for GeneralChatPage.xaml
-    /// </summary>
     public partial class GeneralChatPage : Window
     {
-        // Simple Page de redirection vers soit les ChatRooms soit les Message direct entre utilisateur (DM qui ne sont pas encore fonctionnels)
+        // Simple Page de redirection vers soit les ChatRooms soit les messages direct privés d'utilisateur à utilisateurs
         public GeneralChatPage()
         {
             InitializeComponent();
         }
+
+        // Redirection vers Contact Page
         private void btnContact_Click(object sender, RoutedEventArgs e)
         {
             Contact NewWindow = new Contact();
@@ -32,6 +21,8 @@ namespace ChatRoomProject
             NewWindow.Show();
             this.Close();
         }
+
+        // Redirection vers ChatRoomChoice Page
         private void btnChatRoom_Click(object sender, RoutedEventArgs e)
         {
             ChatRoomChoise NewWindow = new ChatRoomChoise();
@@ -40,15 +31,18 @@ namespace ChatRoomProject
             NewWindow.Show();
             this.Close();
         }
+
+        // Boutton de Fermeture de l'application
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        // Event : Sélectionner l'application pour la déplacer
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 this.DragMove();
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 }
