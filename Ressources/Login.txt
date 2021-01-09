@@ -1,5 +1,3 @@
-Vincent:Mondeckgobelin99
-Thomas:Mondeckgobelin99
-y:y
-a:a
-b:b
+marie.bernet@gmail.com:mdp
+marie.bernet@gmail.com:mdp
+jacque.andre@hotmail.com:mdp

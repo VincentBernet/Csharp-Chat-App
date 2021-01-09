@@ -17,7 +17,6 @@ namespace ChatRoomProject
     {
         public static Socket master;
         public static string name;
-        public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
         public static string ConditionChatRoomSpecific;
@@ -67,7 +66,6 @@ namespace ChatRoomProject
         private void Connectbutton_Click(object sender, RoutedEventArgs e)
         {
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            string ip = "192.168.56.1";
 
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
             if (Connection == true)
@@ -77,12 +75,12 @@ namespace ChatRoomProject
             }
             try
             {
-                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse((App.Current as App).ip), 4242);
                 master.Connect(ipe);
                 MessageBox.Show("Connection à la ChatRoom \""+ (App.Current as App).SessionChatRoom+"\"", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                 Connection = true;
 
-                Packet p = new Packet(PacketType.Chat, id);
+                Packet p = new Packet(PacketType.Chat, (App.Current as App).ip);
                 string SessionName = (App.Current as App).Session;
                 p.Gdata.Add("");
                 p.Gdata.Add("Un nouveau membre a rejoint la chatroom: Bienvenue "+SessionName);
@@ -110,7 +108,7 @@ namespace ChatRoomProject
                 MessageBox.Show("Pas de connexion détecté, veillez vous connecter à l'host d'abord !", "Impossibilité d'envoyer un message", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Packet p = new Packet(PacketType.Chat, id);
+            Packet p = new Packet(PacketType.Chat, (App.Current as App).ip);
             string SessionName = (App.Current as App).Session;
             p.Gdata.Add(SessionName);// get name
             p.Gdata.Add(input);//get input
@@ -148,8 +146,8 @@ namespace ChatRoomProject
             switch (p.packetType)
             {
                 case PacketType.Registration:
-                    
-                    id = p.Gdata[0];
+
+                    (App.Current as App).ip = p.Gdata[0];
                     break;
 
                 case PacketType.Chat:

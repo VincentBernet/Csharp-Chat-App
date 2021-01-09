@@ -11,7 +11,6 @@ namespace ChatRoomProject
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
         public static string inputName;
         public static string inputPassword;
-        public static string id;
         public Inscription()
         {
             InitializeComponent();

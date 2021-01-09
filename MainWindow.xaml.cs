@@ -17,7 +17,6 @@ namespace ChatRoomProject
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt"; 
         public static string inputName;
         public static string inputPassword;
-        public static string id;
         
 
         public MainWindow()
@@ -26,9 +25,9 @@ namespace ChatRoomProject
             InitializeComponent();
 
             // On se connecte à notre serveur, si la connexion est impossible (ndlr le server n'est pas lancé) alors l'application est shutdown directement et un message d'erreur apparait
-            id = "192.168.56.1";
+            (App.Current as App).ip = "192.168.56.1"; 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(id), 4242);
+            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse((App.Current as App).ip), 4242);
             try
             {
                 master.Connect(ipe);

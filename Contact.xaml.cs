@@ -35,12 +35,12 @@ namespace ChatRoomProject
             timer.Start();
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            ip = "192.168.56.1";
+
 
             // On se connecte, si la connexion ne fonctionne pas message d'erreur et fermeture de l'application
             try
             {
-                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse((App.Current as App).ip), 4242);
                 master.Connect(ipe);
             }
             catch

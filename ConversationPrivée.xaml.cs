@@ -26,12 +26,11 @@ namespace ChatRoomProject
             InitializeComponent();
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            string ip = "192.168.56.1";
             Thread.Sleep(1500);
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
             try
             {
-                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
+                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse((App.Current as App).ip), 4242);
                 master.Connect(ipe);
                 DestinatiretextBox.Text = Convert.ToString((App.Current as App).SessionDestinataire);
                 Connection = true;

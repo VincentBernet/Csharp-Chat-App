@@ -99,7 +99,7 @@ namespace ChatRoomProject
             {
                 sw.WriteLine(inputChatRoomName);
                 sw.Close();
-                MessageBox.Show("Nouvelle Chat Room crée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nouvelle Chat Room créée, nommée : " + inputChatRoomName, "Création valider", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
         }

@@ -16,7 +16,7 @@ namespace ChatRoomProject
         // Déclaration de variable "global" à toutes les pages de l'application
         public string Session { get; set; }
         public String SessionChatRoom { get; set; }
-
+        public String ip { get; set; }
         public String SessionDestinataire { get; set; }
     }
 }
