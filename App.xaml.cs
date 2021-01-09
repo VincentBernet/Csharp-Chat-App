@@ -17,6 +17,8 @@ namespace ChatRoomProject
         public string Session { get; set; }
         public String SessionChatRoom { get; set; }
         public String ip { get; set; }
+
+        public String pathBegining { get; set; }
         public String SessionDestinataire { get; set; }
     }
 }

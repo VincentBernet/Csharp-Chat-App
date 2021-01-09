@@ -22,7 +22,7 @@ namespace ChatRoomProject
         public static Boolean Connection = false;
         public static string PseudoDemande;
         public static Boolean ContactWindowAlive = true;
-        public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
+        public string path = (App.Current as App).pathBegining + @"Login.txt";
 
         public Contact()
         {

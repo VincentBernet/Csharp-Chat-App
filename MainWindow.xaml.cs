@@ -14,7 +14,7 @@ namespace ChatRoomProject
         // Déclaration Variable Public
         public static Socket master;
         // Chemin d'accès à mon fichier txt de connexion, pour sa création + modification
-        public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt"; 
+        public string path = @"Login.txt"; 
         public static string inputName;
         public static string inputPassword;
         
@@ -26,6 +26,8 @@ namespace ChatRoomProject
 
             // On se connecte à notre serveur, si la connexion est impossible (ndlr le server n'est pas lancé) alors l'application est shutdown directement et un message d'erreur apparait
             (App.Current as App).ip = "192.168.56.1"; 
+            (App.Current as App).pathBegining = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\";
+            path = (App.Current as App).pathBegining + path;
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse((App.Current as App).ip), 4242);
             try

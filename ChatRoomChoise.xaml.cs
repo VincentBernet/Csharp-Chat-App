@@ -13,8 +13,8 @@ namespace ChatRoomProject
         public static string inputChatRoomName;
         public string OldLastChat;
         public string NewLastChat;
-        public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\ChatRoom.txt";
-        
+        public string path = (App.Current as App).pathBegining + @"ChatRoom.txt";
+
         public ChatRoomChoise()
         {
             InitializeComponent();

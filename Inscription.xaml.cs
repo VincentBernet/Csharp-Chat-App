@@ -8,7 +8,7 @@ namespace ChatRoomProject
 
     public partial class Inscription : Window
     {
-        public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
+        public string path = (App.Current as App).pathBegining + @"Login.txt";
         public static string inputName;
         public static string inputPassword;
         public Inscription()
