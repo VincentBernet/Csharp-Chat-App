@@ -32,7 +32,7 @@ namespace ChatRoomProject
         public static string id;
         public static string LastMessage;
         public static string LastMessageDoNotRepeat;
-        public static string ConditionChatRoomSpecific;
+        public static string ConditionDmSpecific;
         public static Boolean Connection = false;
         public ConversationPrivée()
         {
@@ -40,7 +40,7 @@ namespace ChatRoomProject
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             string ip = "192.168.56.1";
-            Thread.Sleep(10000);
+            Thread.Sleep(1500);
             // On se connecte, si la connexion ne fonctionne pas message d'erreur, l'utilisateur peut réessayer en rentrant une adresse ip valide / en activant son serveur
             try
             {
@@ -70,11 +70,19 @@ namespace ChatRoomProject
         // Fonction pour afficher les messages dans la chatbox, se reload toutes les 0.5 secondes
         private void Reload(object sender, EventArgs e)
         {
-            if (ConditionChatRoomSpecific ==  (App.Current as App).SessionDestinataire + (App.Current as App).Session)
+            if (ConditionDmSpecific == (App.Current as App).SessionDestinataire + (App.Current as App).Session)
             {
                 if (LastMessageDoNotRepeat != LastMessage)
                 {
-                    ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString() + " | " + LastMessage + "\n";
+                    ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString() + " | " + (App.Current as App).SessionDestinataire + " : " + LastMessage + "\n";
+                    LastMessageDoNotRepeat = LastMessage;
+                }
+            }
+            else if (ConditionDmSpecific == (App.Current as App).Session + (App.Current as App).SessionDestinataire)
+            { 
+                if (LastMessageDoNotRepeat != LastMessage)
+                {
+                    ChatScreentextBox.Text = ChatScreentextBox.Text + DateTime.Now.ToLongTimeString() + " | " + (App.Current as App).Session + " : " + LastMessage + "\n";
                     LastMessageDoNotRepeat = LastMessage;
                 }
             }
@@ -91,9 +99,7 @@ namespace ChatRoomProject
                 return;
             }
             Packet p = new Packet(PacketType.Chat, id);
-            string SessionName = (App.Current as App).Session;
-            p.Gdata.Add((App.Current as App).Session);
-            p.Gdata.Add((App.Current as App).SessionDestinataire);
+            p.Gdata.Add((App.Current as App).SessionDestinataire + (App.Current as App).Session);
             p.Gdata.Add(MessagetextBox.Text);
             master.Send(p.ToBytes());//send to server
             MessagetextBox.Text = "";
@@ -141,8 +147,8 @@ namespace ChatRoomProject
                     break;
 
                 case PacketType.Chat:
-                    ConditionChatRoomSpecific = (p.Gdata[0]+p.Gdata[1]);
-                    LastMessage = (p.Gdata[0] + " : " + p.Gdata[2]);
+                    ConditionDmSpecific = p.Gdata[0];
+                    LastMessage = p.Gdata[1];
                     break;
 
             }

@@ -34,6 +34,7 @@ namespace ChatRoomProject
         public static string ConditionChatRoomSpecific;
         public static Boolean Connection = false;
         public static string PseudoDemande;
+        public static Boolean ContactWindowAlive = true;
         public string path = @"C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Login.txt";
 
         public Contact()
@@ -42,7 +43,7 @@ namespace ChatRoomProject
 
             // Création d'un timer qui permettra plus loin de refresh une fonction toute les 0.5 secondes
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(0.5);
+            timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += dispatcherTimerReloadFunction_Tick;
             timer.Start();
 
@@ -97,10 +98,12 @@ namespace ChatRoomProject
                     case MessageBoxResult.Yes:
                         (App.Current as App).SessionDestinataire = PseudoDemande;
                         Packet p = new Packet(PacketType.Chat, ip);
-                        p.Gdata.Add("DemandeConversationValide");
+                        p.Gdata.Add(PseudoDemande+"DemandeConversationValide");
                         p.Gdata.Add(ConditionChatRoomSpecific);
                         master.Send(p.ToBytes());//send to server
-
+                        ConditionChatRoomSpecific = "";
+                        PseudoDemande = "";
+                        ContactWindowAlive = false;
                         ConversationPrivée NewWindow = new ConversationPrivée();
                         NewWindow.Top = this.Top;
                         NewWindow.Left = this.Left;
@@ -109,7 +112,8 @@ namespace ChatRoomProject
                         break;
 
                     case MessageBoxResult.No:
-
+                        ConditionChatRoomSpecific = "";
+                        PseudoDemande = "";
                         Packet Refus = new Packet(PacketType.Chat, ip); 
                         Refus.Gdata.Add(PseudoDemande+"RefusDemandeConversation");
                         Refus.Gdata.Add(ConditionChatRoomSpecific);
@@ -120,20 +124,26 @@ namespace ChatRoomProject
                 ConditionChatRoomSpecific = "";
                 return;
             }
-            if (PseudoDemande == "RefusDemandeConversation")
+            if (PseudoDemande == (App.Current as App).Session+"RefusDemandeConversation")
             {
                 MessageBox.Show("Mister " + ConditionChatRoomSpecific + " ne souhaite pas communiquer avec vous", "Refus Conversation");
+                ConditionChatRoomSpecific = "";
+                PseudoDemande = "";
             }
-                if (PseudoDemande == "DemandeConversationValide")
+            else if (PseudoDemande == (App.Current as App).Session + "DemandeConversationValide")
             {
                 MessageBox.Show("Mister "+ConditionChatRoomSpecific+" a accepté votre demande, il est temps de chatter !", "Excellent");
+                ConditionChatRoomSpecific = "";
+                PseudoDemande = "";
+                ContactWindowAlive = false;
                 ConversationPrivée NewWindow = new ConversationPrivée();
                 NewWindow.Top = this.Top;
                 NewWindow.Left = this.Left;
                 NewWindow.Show();
                 this.Close();
             }
-
+            ConditionChatRoomSpecific = "";
+            PseudoDemande = "";
 
         }
         
@@ -171,23 +181,24 @@ namespace ChatRoomProject
 
         void DataManager(Packet p)
         {
-
-            switch (p.packetType)
+            if (ContactWindowAlive == true)
             {
-                case PacketType.Registration:
+                switch (p.packetType)
+                {
+                    case PacketType.Registration:
 
-                    ip = p.Gdata[0];
-                    break;
+                        ip = p.Gdata[0];
+                        break;
 
-                case PacketType.Chat:
-                    PseudoDemande = p.Gdata[0];
-                    ConditionChatRoomSpecific = p.Gdata[1];
-                    
-                    LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
-                    break;
+                    case PacketType.Chat:
+                        PseudoDemande = p.Gdata[0];
+                        ConditionChatRoomSpecific = p.Gdata[1];
 
+                        LastMessage = (p.Gdata[0] + " : " + p.Gdata[1]);
+                        break;
+
+                }
             }
-
         }
     }
 }
