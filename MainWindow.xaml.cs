@@ -36,7 +36,7 @@ namespace ChatRoomProject
             }
             catch (Exception)
             {
-                MessageBox.Show("You are not connected to the server, application gonna shut down", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Lisez le read-me dans le rapport ! Vous n'êtes pas connecté au serveur, veillez d'abord run le serveur puis sur une autre instance le client ChatRoomProject ! ", "Attention Serveur non détecté", MessageBoxButton.OK, MessageBoxImage.Information);
                 Application.Current.Shutdown();
             }
            
