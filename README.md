@@ -6,14 +6,6 @@ The application is based on a Server / Client interaction, using WPF (Windows Pr
 <br><br>
 <p align="center"><img src="Ressources/Images/C-Project-Github.gif"\></p>
 
-
----
-
-## Table of Contents 
-- [Demo](#CDemo)
-- [Features](#features)
-
-
 ---
 
 ## Features
