@@ -2,3 +2,5 @@ marie.bernet@gmail.com:mdp
 jacque.andre@hotmail.com:mdp
 a:a
 Admin:mdp
+vincent.bernet@efrei.net:azertyui
+Thomas.Segin@gmail.com:123

@@ -32,7 +32,7 @@
             <Image Source="C:\Users\Vincent\source\repos\ChatRoomProject\Ressources\Images\LoginImage.png" Width="150" Height="150" VerticalAlignment="Top" Margin="650,297,0,0" Stretch="Fill" IsEnabled="False" />
         
         <!-- TextBox avec le nom de notre Conversation -->
-        <TextBox Name ="DestinatiretextBox" TextWrapping="Wrap" Foreground="white" Margin="343,36,351,392"/>
+        <TextBox Name ="DestinatiretextBox" TextWrapping="Wrap" Foreground="white" Margin="343,36,271,392"/>
         
         <!-- StackPanel du Chat -->
         <StackPanel Margin="124,74,155,109">
