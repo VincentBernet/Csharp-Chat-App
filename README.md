@@ -1,8 +1,8 @@
 # Csharp-Chat-App
 
-This a is a Chat Application developped in C# with the framework .NET 5,0. 
+This a is a Chat Application developped in **C#** with the framework **.NET 5,0**. 
 
-The application is based on a Server / Client interaction, using WPF (Windows Presentation Foundation) for the front-end. 
+The application is based on a Server / Client interaction, using **WPF** (Windows Presentation Foundation) for the front-end. 
 <br><br>
 <p align="center"><img src="Ressources/Images/C-Project-Github.gif"\></p>
 
